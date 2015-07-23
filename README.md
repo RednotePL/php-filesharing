@@ -5,11 +5,11 @@ PHP and MySQL based website for sharing files.
 # Installation
 
 In your phpmyadmin, do the following steps:
+
 1. Create database 'secure_login'
 2. Import sql\secure_login.sql
 3. Create sec_user and assign a password "XHSYp2At98fajXpt" (You have to change it later, must be same as in 'dl\includes\psl-config.php')
 4. Assign only SELECT, INSERT, UPDATE and DELETE and only to that database
-
 5. Open 'dl\includes\psl-config.php' and change your database settings
 6. Open 'dl\includes\server-info.php' and change $serveradress to point to your 'upload' folder
 
