@@ -37,8 +37,8 @@ $sql = "INSERT INTO `files`(
 	mysql_connect(HOST, USER, PASSWORD)
 	or die("Zapytanie niepoprawne");
 	
-	//$sqlinit = "USE secure_login";
-	//mysql_query($sqlinit);
+	$sqlinit = "USE secure_login";
+	mysql_query($sqlinit);					//Bugfix for "No Database Selected"
 	
 	$query = mysql_query($sql)
 	or die(mysql_error());
