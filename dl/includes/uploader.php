@@ -11,6 +11,7 @@ $filepath = "C:\\GitHub\\php-filesharing\\dl\\upload\\";							//Change your pat
 $userpath = $filepath. $user. "\\";
 $userfilepath = $filepath. $user. "\\". $_FILES['userfile']['name'];
 $tmpfile = $_FILES['userfile']['tmp_name'];
+$fileadress = $serveradress. $user. "/". $_FILES['userfile']['name'];
 
 if( $_FILES['userfile']['name'] != "" )
 {
@@ -32,7 +33,7 @@ $sql = "INSERT INTO `files`(
 	$_FILES['userfile']['name']. "\",\"". 
 	$_FILES['userfile']['size']. "\",\"". 
 	$_FILES['userfile']['type']. "\",\"". 
-	$serveradress. $user. "/". $_FILES['userfile']['name']. 
+	$fileadress. 
 	"\")";
 	
 	mysql_connect(HOST, USER, PASSWORD)
@@ -59,7 +60,7 @@ else
 <li>Sent file: <?php echo $_FILES['userfile']['name'];  ?>
 <li>File size: <?php echo $_FILES['userfile']['size'];  ?> bytes
 <li>File type: <?php echo $_FILES['userfile']['type'];  ?>
-<li>File path: <?php echo $serveradress. $user. "/". $_FILES['userfile']['name']; ?>
+<li>File path: <?php echo '<a href="'. $fileadress. '">'. $fileadress. '</a>'; ?>
 </ul>
 </body>
 </html>
