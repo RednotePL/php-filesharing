@@ -5,8 +5,8 @@ function get_user_id($user){
 	mysql_connect(HOST, USER, PASSWORD)
 	or die(mysql_error());
 	
-	//$sqlinit = "USE secure_login";
-	//mysql_query($sqlinit);
+	$sqlinit = "USE secure_login";
+	mysql_query($sqlinit);
 	
 	$sql = "SELECT `id` FROM `members` WHERE `username` = \"". $user. "\"";
 	$result = mysql_query($sql);
