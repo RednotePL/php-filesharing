@@ -20,6 +20,10 @@ sec_session_start();
                 the user, so pages will be able to determine the type of user
                 authorised to access the page.
             </p>
+			
+			<p>
+				<a href="upload.php">Click here for the upload page</a>
+			</p>
             <p>Return to <a href="index.php">login page</a></p>
         <?php else : ?>
             <p>

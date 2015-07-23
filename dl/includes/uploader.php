@@ -5,19 +5,16 @@ include_once 'db-connect.php';
 include_once 'functions.php';
  
 sec_session_start();
-?>
-
-<?php
 
 $user = htmlentities($_SESSION['username']);
-$filepath = "D:\\www\\dl\\upload\\";
+$filepath = "C:\\GitHub\\php-filesharing\\dl\\upload\\";							//Change your path to 'upload' folder
 $userpath = $filepath. $user. "\\";
 $userfilepath = $filepath. $user. "\\". $_FILES['file']['name'];
 
 if( $_FILES['file']['name'] != "" )
 {
-	if (!file_exists('D:\\www\\dl\\upload\\'. htmlentities($_SESSION['username']). '\\')) {
-    mkdir('D:\\www\\dl\\upload\\'. htmlentities($_SESSION['username']). '\\', 0777, true);
+	if (!file_exists($filepath. htmlentities($_SESSION['username']). '\\')) {
+    mkdir($filepath. htmlentities($_SESSION['username']). '\\', 0777, true);
 }
 	rename( $_FILES['file']['tmp_name'], $userfilepath ) or 
            die( "Could not copy file!");		
@@ -40,8 +37,8 @@ $sql = "INSERT INTO `files`(
 	mysql_connect(HOST, USER, PASSWORD)
 	or die("Zapytanie niepoprawne");
 	
-	$sqlinit = "USE secure_login";
-	mysql_query($sqlinit);
+	//$sqlinit = "USE secure_login";
+	//mysql_query($sqlinit);
 	
 	$query = mysql_query($sql)
 	or die(mysql_error());
