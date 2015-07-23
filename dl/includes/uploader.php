@@ -9,14 +9,15 @@ sec_session_start();
 $user = htmlentities($_SESSION['username']);
 $filepath = "C:\\GitHub\\php-filesharing\\dl\\upload\\";							//Change your path to 'upload' folder
 $userpath = $filepath. $user. "\\";
-$userfilepath = $filepath. $user. "\\". $_FILES['file']['name'];
+$userfilepath = $filepath. $user. "\\". $_FILES['userfile']['name'];
+$tmpfile = $_FILES['userfile']['tmp_name'];
 
-if( $_FILES['file']['name'] != "" )
+if( $_FILES['userfile']['name'] != "" )
 {
 	if (!file_exists($filepath. htmlentities($_SESSION['username']). '\\')) {
     mkdir($filepath. htmlentities($_SESSION['username']). '\\', 0777, true);
 }
-	rename( $_FILES['file']['tmp_name'], $userfilepath ) or 
+	move_uploaded_file( $tmpfile, $userfilepath ) or 
            die( "Could not copy file!");		
 
 $sql = "INSERT INTO `files`(
@@ -28,10 +29,10 @@ $sql = "INSERT INTO `files`(
 	) 
 	VALUES 
 	(\"". get_user_id($user). "\",\"". 
-	$_FILES['file']['name']. "\",\"". 
-	$_FILES['file']['size']. "\",\"". 
-	$_FILES['file']['type']. "\",\"". 
-	$serveradress. $user. "/". $_FILES['file']['name']. 
+	$_FILES['userfile']['name']. "\",\"". 
+	$_FILES['userfile']['size']. "\",\"". 
+	$_FILES['userfile']['type']. "\",\"". 
+	$serveradress. $user. "/". $_FILES['userfile']['name']. 
 	"\")";
 	
 	mysql_connect(HOST, USER, PASSWORD)
@@ -55,10 +56,10 @@ else
 <body>
 <h2>Uploaded File Info:</h2>
 <ul>
-<li>Sent file: <?php echo $_FILES['file']['name'];  ?>
-<li>File size: <?php echo $_FILES['file']['size'];  ?> bytes
-<li>File type: <?php echo $_FILES['file']['type'];  ?>
-<li>File path: <?php echo $serveradress. $user. "/". $_FILES['file']['name']; ?>
+<li>Sent file: <?php echo $_FILES['userfile']['name'];  ?>
+<li>File size: <?php echo $_FILES['userfile']['size'];  ?> bytes
+<li>File type: <?php echo $_FILES['userfile']['type'];  ?>
+<li>File path: <?php echo $serveradress. $user. "/". $_FILES['userfile']['name']; ?>
 </ul>
 </body>
 </html>
