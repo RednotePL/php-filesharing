@@ -13,7 +13,7 @@ function get_user_id($user){
 	$queryRes = mysql_query($sql); 
 	$result = mysql_fetch_array($queryRes); 
 	$userid = $result['id'];
-	echo $userid;
+//	echo $userid;
 	return $userid;
 }
  
