@@ -8,11 +8,12 @@ function get_user_id($user){
 	$sqlinit = "USE secure_login";
 	mysql_query($sqlinit);
 	
-	$sql = "SELECT `id` FROM `members` WHERE `username` = \"". $user. "\"";
-	$result = mysql_query($sql);
-	//mysql_fetch_array($result);
-	echo mysql_error();
-	$userid = $result;
+//	$sql = "SELECT `id` FROM `members` WHERE `username` = \"". $user. "\"";
+	$sql = "SELECT `id` FROM `members` WHERE `username` = '". $user."'"; 
+	$queryRes = mysql_query($sql); 
+	$result = mysql_fetch_array($queryRes); 
+	$userid = $result['id'];
+	echo $userid;
 	return $userid;
 }
  
